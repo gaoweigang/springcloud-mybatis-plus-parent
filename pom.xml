@@ -14,6 +14,8 @@
         <module>springcloud-eureka-provider-stub</module>
         <module>springcloud-eureka-consumer</module>
         <module>springcloud-eureka-common</module>
+        <module>springcloud-eureka-dao</module>
+        <module>springcloud-eureka-service</module>
         <!--熔断-->
     </modules>
 
@@ -30,11 +32,102 @@
          <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
          <java.version>1.8</java.version>
          <mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
+         <mybatisplus-spring-boot-starter.version>1.0.1</mybatisplus-spring-boot-starter.version>
+         <mybatis-plus.version>2.1.8</mybatis-plus.version>
          <mysql.version>5.1.38</mysql.version>
          <pagehelper.version>4.1.6</pagehelper.version>
+
+         <druid.version>1.1.3</druid.version>
+
+
          <maven.compiler.source>1.8</maven.compiler.source>
          <maven.compiler.target>1.8</maven.compiler.target>
      </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>1.5.19.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <!--<version>Finchley.SR2</version>-->
+                <version>Edgware.SR5</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatisplus-spring-boot-starter</artifactId>
+                <version>${mybatisplus-spring-boot-starter.version}</version>
+                <!--排除里面mybatis-plus依赖,使用自-->
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.baomidou</groupId>
+                        <artifactId>mybatis-plus</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!--使用自己指定的版本-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!--自己的模块 添加到依赖管理中 start..-->
+            <dependency>
+                <groupId>com.gwg.springcloud</groupId>
+                <artifactId>springcloud-eureka-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gwg.springcloud</groupId>
+                <artifactId>springcloud-eureka-dao</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gwg.springcloud</groupId>
+                <artifactId>springcloud-eureka-consumer</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gwg.springcloud</groupId>
+                <artifactId>springcloud-eureka-provider</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gwg.springcloud</groupId>
+                <artifactId>springcloud-eureka-provider-stub</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gwg.springcloud</groupId>
+                <artifactId>springcloud-eureka-register</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--自己的模块添加到依赖管理中 end..-->
+
+
+
+        </dependencies>
+
+    </dependencyManagement>
 
 
 </project>

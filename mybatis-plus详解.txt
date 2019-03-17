@@ -1,0 +1,22 @@
+参考
+https://blog.csdn.net/xiatiancsdn/article/details/81744419
+
+springboot与Druid Spring Boot Starter
+https://blog.csdn.net/weixin_38187317/article/details/81562571
+
+
+任务：
+使用mybatisplus-spring-boot-starter,而不是mybatis-plus可以简化配置，
+因为mybatisplus-spring-boot-starter中有自动配置类
+
+写两个列子：分别是springboot使用mybatisplus-spring-boot-starter集成mybatis-plus，
+另外一个没有使用mybatisplus-spring-boot-starter集成mybatis-plus
+
+
+写两个列子：分别是springboot使用druid-spring-boot-starter集成druid，
+另外一个没有使用druid-spring-boot-starter集成druid
+
+
+
+使用druid-spring-boot-starter后如何支持多数据源
+

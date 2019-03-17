@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>springcloud-mybatis-plus-parent</artifactId>
+        <groupId>com.gwg.springcloud</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>springcloud-eureka-dao</artifactId>
+
+    <properties>
+        <mybatisplus-spring-boot-starter.version>1.0.1</mybatisplus-spring-boot-starter.version>
+        <mybatis-plus.version>2.1.8</mybatis-plus.version>
+        <mysql.version>5.1.38</mysql.version>
+        <druid.version>1.1.3</druid.version>
+    </properties>
+
+
+    <dependencies>
+        <!--mybatis-plus begin-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatisplus-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--mybatisplus-spring-boot-starter已经依赖了mybatis-plus-->
+        <!--依赖管理里面已经指定了mybatis-plus的版本了，所以在这里不需要再指定mybatis-plus版本,
+            注意：mybatis-plus已经包含了分析插件-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+        </dependency>
+
+        <!-- mysql数据库驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+    </dependencies>
+
+
+
+
+</project>

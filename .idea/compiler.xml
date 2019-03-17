@@ -8,17 +8,21 @@
         <outputRelativeToContentRoot value="true" />
         <module name="springcloud-eureka-common" />
         <module name="springcloud-eureka-consumer" />
+        <module name="springcloud-eureka-dao" />
         <module name="springcloud-eureka-provider" />
         <module name="springcloud-eureka-provider-stub" />
         <module name="springcloud-eureka-register" />
+        <module name="springcloud-eureka-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="springcloud-eureka-common" target="1.5" />
-      <module name="springcloud-eureka-consumer" target="1.5" />
-      <module name="springcloud-eureka-provider" target="1.5" />
+      <module name="springcloud-eureka-common" target="1.8" />
+      <module name="springcloud-eureka-consumer" target="1.8" />
+      <module name="springcloud-eureka-dao" target="1.8" />
+      <module name="springcloud-eureka-provider" target="1.8" />
       <module name="springcloud-eureka-provider-stub" target="1.8" />
       <module name="springcloud-eureka-register" target="1.8" />
+      <module name="springcloud-eureka-service" target="1.8" />
       <module name="springcloud-mybatis-plus-parent" target="1.8" />
     </bytecodeTargetLevel>
   </component>

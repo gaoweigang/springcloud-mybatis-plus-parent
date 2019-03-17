@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * 在SpringCloud Eureka中，Restful接口 作为服务的提供者
+ * 在SpringCloud Eureka中，Restful接口 作为服务的提供者。
+ *
+ * Controller依赖service
  */
 @RestController
 public class HelloController implements IHelloRemote{
