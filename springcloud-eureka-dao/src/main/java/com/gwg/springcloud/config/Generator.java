@@ -29,21 +29,21 @@ public class Generator {
     private static String canonicalPath = "";
 
     //基本包名
-    private static String basePackage = "com.ycq";
+    private static String basePackage = "com.gwg.springcloud";
     //作者
     private static String authorName = "gaoweigang";
     //要生成的表名
-    private static String[] tables = {"JS_ENFOR","JS_DOC"};
+    private static String[] tables = {"student","course"};
     //table前缀
-    private static String prefix = "JS_";
+    private static String prefix = "";
 
     //数据库类型
     private static DbType dbType = DbType.MYSQL;
     //数据库配置四要素
-    private static String driverName = "oracle.jdbc.OracleDriver";
-    private static String url = "jdbc:oracle:thin:@localhost:1521:test";
-    private static String username = "123456";
-    private static String password = "123456    ";
+    private static String driverName = "com.mysql.cj.jdbc.Driver";
+    private static String url = "jdbc:mysql://127.0.0.1:3306/dev?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true";
+    private static String username = "root";
+    private static String password = "123456";
 
 
     public static void main(String[] args) {
@@ -54,7 +54,7 @@ public class Generator {
          * 获取项目路径
          */
         try {
-            canonicalPath = new File("").getCanonicalPath();
+            canonicalPath = new File("").getCanonicalPath() + "\\springcloud-eureka-dao";
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -84,7 +84,7 @@ public class Generator {
          * 全局配置
          */
         gen.setGlobalConfig(new GlobalConfig()
-                .setOutputDir( canonicalPath + "/src/main/java")//输出目录
+                .setOutputDir( canonicalPath + "\\src\\main\\java")//输出目录
                 .setFileOverride(true)// 是否覆盖文件
                 .setActiveRecord(true)// 开启 activeRecord 模式
                 .setEnableCache(false)// XML 二级缓存
@@ -95,7 +95,7 @@ public class Generator {
                 // 自定义文件命名，注意 %s 会自动填充表实体属性！
                 .setMapperName("%sMapper")
                 .setXmlName("%sMapper")
-                .setServiceName("%sService")
+                .setServiceName("I%sService")
                 .setServiceImplName("%sServiceImpl")
                 .setControllerName("%sController")
         );
@@ -198,5 +198,7 @@ public class Generator {
 
         // 执行生成
         gen.execute();
+        System.out.println("生成完毕");
+
     }
 }

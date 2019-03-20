@@ -1,2 +1,25 @@
 测试：
-http://localhost:8762/provider/gaoweigang/22
+http://localhost:8762/course/api/courseInfo/1
+{
+    "code": 0,
+    "message": "处理成功",
+    "success": true,
+    "data": {
+        "id": 1,
+        "name": "数学",
+        "code": "yuwen"
+    }
+}
+
+
+http://localhost:8762/student/api/studentInfo/1
+{
+    "code": 0,
+    "message": "处理成功",
+    "success": true,
+    "data": {
+        "id": 1,
+        "name": "高伟刚1",
+        "age": 22
+    }
+}

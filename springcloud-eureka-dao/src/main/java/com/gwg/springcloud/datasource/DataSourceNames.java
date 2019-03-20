@@ -1,4 +1,4 @@
-package com.gwg.springcloud.datasources;
+package com.gwg.springcloud.datasource;
 
 /**
  * 增加多数据源，在此配置

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status="debug" 可以查看log4j的装配过程-->
+<!-- status="OFF"，可以去掉，它的含义为是否记录log4j2本身的event信息，默认是OFF -->
+<Configuration status="debug">
+
+    <!--定义属性-->
+    <Properties>
+        <Property name="TEST_LOG_ROOT">E:\logs</Property>
+    </Properties>
+
+    <Appenders>
+        <!--这个输出控制台的配置-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!--输出日志的格式-->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%p] %m%n"/>
+        </Console>
+
+        <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
+        <RollingFile name="TEST_DEBUG_INFO" fileName="${sys:TEST_LOG_ROOT}/TEST_debug_info.log" filePattern="${sys:TEST_LOG_ROOT}/TEST_debug_info_%d{yyyy_MM_dd}.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%c %M %L]-[%p] %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <Filters>
+                <!--log4j规定了的日志输出级别：trace<debug<info<warn<error<fatal
+                该日志文件只记录满足如下过滤条件的日志
+                NEUTRAL(中立)：比如info日志，由于是info类型日志，第一个过滤器与第二过滤器是中立，第三个过滤器判断通过
+                该日志文件可以记录debug,info级别的日志
+                -->
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/><!--error及其以上的日志类型拒绝，error以下的中立-->
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/><!--warn及其以上的日志类型拒绝，warn以下的中立-->
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <RollingFile name="TEST_DEBUG" fileName="${sys:TEST_LOG_ROOT}/TEST_debug.log" filePattern="${sys:TEST_LOG_ROOT}/TEST_debug_%d{yyyy_MM_dd}.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%c %M %L]-[%p] %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <Filters>
+                <!--log4j规定了的日志输出级别：trace<debug<info<warn<error<fatal
+                该日志文件只记录满足如下过滤条件的日志
+                NEUTRAL(中立)：比如info日志，由于是info类型日志，第一个过滤器与第二过滤器以及第三个过滤器是中立，第四个过滤器判断通过
+                该日志文件只能记录debug级别的日志,如下配置很冗余，等价于如下两条配置：
+                <ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+                 -->
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/><!--error及其以上的日志类型拒绝，error以下的中立-->
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/><!--warn及其以上的日志类型拒绝，warn以下的中立-->
+                <ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL"/><!--info及其以上的日志类型拒绝，info以下的中立-->
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <RollingFile name="TEST_INFO" fileName="${sys:TEST_LOG_ROOT}/TEST_info.log" filePattern="${sys:TEST_LOG_ROOT}/TEST_info_%d{yyyy_MM_dd}.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%c %M %L]-[%p] %m%n"/>
+            <Policies>
+                <!-- 每天一个文件 -->
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <Filters>
+                <!--该配置文件只能记录info级别的日志-->
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+
+        <RollingFile name="TEST_WARN" fileName="${sys:TEST_LOG_ROOT}/TEST_warn.log" filePattern="${sys:TEST_LOG_ROOT}/TEST_warn_%d{yyyy_MM_dd}.log">
+            <PatternLayout>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} [%c %M %L]-[%p] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!--每天一个日志文件，也可以基于大小配置
+                    <SizeBasedTriggeringPolicy size="50MB"/>
+                 -->
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <Filters>
+                <!--该配置文件只能记录warn级别的日志-->
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <RollingFile name="TEST_ERROR" fileName="${sys:TEST_LOG_ROOT}/TEST_error.log" filePattern="${sys:TEST_LOG_ROOT}/TEST_error_%d{yyyy_MM_dd}.log">
+            <PatternLayout>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} [%c %M %L]-[%p] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <Filters>
+                <!--该配置文件只能记录error和fatal级别的日志-->
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+
+        <!--异步Appender-->
+        <Async name="Async_TEST_ERROR">
+            <AppenderRef ref="TEST_ERROR"/>
+        </Async>
+
+    </Appenders>
+
+    <Loggers>
+        <!-- name指定该配置适用于那些目录，level指定日志级别一起以上的日志才适用， addditivity设置是否输出到rootLogger所配置的日志中,这样Root日志记录器就不会再记录一遍了-->
+        <Logger name="com.gwg.springcloud" level="DEBUG"
+                additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <AsyncLogger name="com.gwg.springcloud" level="DEBUG" additivity="false">
+        <!-- name指定该配置适用于那些目录，level指定日志级别一起以上的日志才适用， addditivity设置是否输出到rootLogger所配置的日志中,这样Root日志记录器就不会再记录一遍了-->
+            <AppenderRef ref="Async_TEST_ERROR"/>
+        </AsyncLogger>
+        <Root level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -5,7 +5,12 @@ springboot与Druid Spring Boot Starter
 https://blog.csdn.net/weixin_38187317/article/details/81562571
 
 
-任务：
+
+
+
+
+
+后续：
 使用mybatisplus-spring-boot-starter,而不是mybatis-plus可以简化配置，
 因为mybatisplus-spring-boot-starter中有自动配置类
 

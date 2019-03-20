@@ -1,4 +1,4 @@
-package com.gwg.springcloud.datasources;
+package com.gwg.springcloud.datasource;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 

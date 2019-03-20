@@ -1,9 +1,8 @@
-package com.gwg.springcloud.datasources;
+package com.gwg.springcloud.datasource;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 
@@ -17,7 +16,7 @@ import java.util.Map;
  * 配置多数据源
  *
  */
-@Configuration
+//@Configuration
 public class DynamicDataSourceConfig {
 
     @Bean

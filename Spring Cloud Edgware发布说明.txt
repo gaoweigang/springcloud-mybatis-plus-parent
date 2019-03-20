@@ -1,0 +1,12 @@
+Spring Cloud Edgware是基于Spring Boot 1.5.x构建的。
+
+重命名starter
+许多starter没有遵循正常的Spring Cloud命名约定。在Edgware中，使用已废弃的starter将记录一条警告，
+其中包含要在其位置使用的新启动器(starter)的名称。下表列出了不推荐使用的启动器及其替代品。
+
+warning example：
+2018-06-19 13:38:29.400 WARN 8732 --- [main ] o.s.c.s.e.s.EurekaServerStarterDeprecationWarningAutoConfiguration : spring-cloud-starter-eureka-server is
+deprecated as of Spring Cloud Netflix 1.4.0, please migrate to spring-cloud-starter-netflix-eureka-server
+
+
+参考：https://www.cnblogs.com/flying607/p/9198355.html

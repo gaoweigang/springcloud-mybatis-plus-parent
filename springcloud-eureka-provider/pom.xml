@@ -18,13 +18,11 @@
             <artifactId>springcloud-eureka-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>com.gwg.springcloud</groupId>
             <artifactId>springcloud-eureka-service</artifactId>
             <version>${project.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.gwg.springcloud</groupId>
@@ -32,16 +30,38 @@
             <version>${project.version}</version>
         </dependency>
 
-        <!-- 注册中心 -->
+        <!-- 注册中心 spring-cloud-starter-eureka is deprecated as of Spring Cloud Netflix 1.4.0, please migrate to spring-cloud-starter-netflix-eureka
+             参考：
+         -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <!--剔除springboot默认的日志框架logback,改用日志框架log4j2-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--改用日志框架log4j2 , 引入spring-boot-starter-log4j2依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <!-- Log4j2 异步支持 -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.3.6</version>
         </dependency>
 
         <!-- 添加声明式feign依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
 

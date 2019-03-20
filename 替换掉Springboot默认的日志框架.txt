@@ -1,0 +1,39 @@
+Spring Boot 能够使用Logback, Log4J2 , java util logging 作为日志记录工具。Spring Boot 默认使用Logback作为日志记录工具。
+日志默认输出到控制台但也能输出到文件中。我们通过spring-boot-starter-logging 加入Logback依赖，其实只要我们加入任意的Spring
+Boot starter 都会默认引入spring-boot-starter-logging，因此 我们不需要分开加入他们。
+
+
+如果Logback JAR在类路径一直可用那么Spring Boot 将一直选择Logback 记录日志。所以想用其他的日志工具如Log4J2，
+我们需要去除Logback JAR并且在类路径中加入Log4J2的依赖。如果使用Logback记录日志我们不用做任何事情，
+只要在application.properties或者application.yml中配置日志级别就可以了，因为我引入是基于starter的logback，否则的话我们还要专门编写logback的配置文件。
+
+
+
+使用自定义日志:Log4J2
+我们使用任何的starter,默认加入Logback 依赖spring-boot-starter-logging。为了使用Log4J2,
+我们首先要去除spring-boot-starter-logging并且引入spring-boot-starter-log4j2 依赖
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+    <!--去除spring-boot-starter-logging-->
+    <exclusions>
+        <exclusion>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+<!--引入spring-boot-starter-log4j2依赖-->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-log4j2</artifactId>
+</dependency>
+现在我们可以在类路径下创建并配置log4j2的配置文件log4j2-spring.xml
+
+
+
+参考：https://www.jianshu.com/p/1fa12b92d5c4
